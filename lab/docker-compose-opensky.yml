@@ -13,10 +13,11 @@ services:
       - ./certs/ca/ca.crt:/etc/ssl/opensky/ca/ca.crt:ro
       - ./opensky-loader/index.js:/usr/src/app/index.js
       - ./elastic-config.js:/usr/src/app/config.js
-    restart: always
     environment:
       - ELASTIC_HOST=${ELASTIC_HOST}
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - OPENSKY_USER=${OPENSKY_USER}
+      - OPENSKY_PASSWORD=${OPENSKY_PASSWORD}
 
   opensky-viewer:
     init: true
@@ -33,4 +34,4 @@ services:
       - ./opensky-viewer/index.js:/usr/src/app/index.js
       - ./opensky-viewer/index.html:/usr/src/app/index.html
       - ./elastic-config.js:/usr/src/app/config.js
-    restart: always
+
